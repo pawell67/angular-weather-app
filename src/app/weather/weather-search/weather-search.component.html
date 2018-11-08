@@ -1,0 +1,10 @@
+<section class="weather-search">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" novalidate>
+        <label for="city">City</label>
+        <input [(ngModel)]="location" name="location" type="text" id="city" required/>
+        <button type="submit">Add City</button>
+    </form>
+    <div>
+        <span class="info">City found:</span>City Name
+    </div>
+</section>

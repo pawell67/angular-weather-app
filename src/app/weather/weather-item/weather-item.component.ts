@@ -7,7 +7,8 @@ import {WeatherItem} from './weather-item';
     styleUrls: ['./weather-item.component.scss']
 })
 export class WeatherItemComponent implements OnInit {
-    @Input('item') weatherItem: WeatherItem;
+    @Input('weatherItem')
+    weatherItem: WeatherItem;
 
     constructor() {
     }
