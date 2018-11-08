@@ -22,10 +22,10 @@ export class WeatherService {
 
     searchWeatherData(cityName: string): Observable<any> {
         return this._http
-            .get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=d5bf238cd2565d4d7ea1e1483be99b68&units=metric`)
+            .get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=d5bf238cd2565d4d7ea1e1483be99b68&type=like&units=metric`)
             .catch(error => {
-                console.error(error);
-                return throwError(error.json());
+                console.log(error);
+                return error;
             });
     }
 }

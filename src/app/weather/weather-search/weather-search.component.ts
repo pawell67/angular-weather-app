@@ -2,6 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import '@angular/forms';
 import {WeatherService} from '../weather.service';
 import {WeatherItem} from '../weather-item/weather-item';
+import {FormControl} from '@angular/forms';
+import {Subject} from 'rxjs';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/filter';
 
 @Component({
     selector: 'app-weather-search',
@@ -9,15 +15,25 @@ import {WeatherItem} from '../weather-item/weather-item';
     styleUrls: ['./weather-search.component.scss'],
 })
 export class WeatherSearchComponent implements OnInit {
-    location: string;
+    public location: string;
+    private searchStream = new Subject<string>();
+    data: any = {};
 
     constructor(private _weatherService: WeatherService) {
     }
 
     ngOnInit() {
+        this.searchStream
+            .debounceTime(300)
+            .filter((input: string) => input.length > 2)
+            .distinctUntilChanged()
+            .switchMap((input: string) => this._weatherService.searchWeatherData(input))
+            .subscribe(
+                data => this.data = data
+            );
     }
 
-    onSubmit(form) {
+    onSubmit(form: FormControl) {
         this._weatherService.searchWeatherData(form.value.location)
             .subscribe(
                 data => {
@@ -27,4 +43,8 @@ export class WeatherSearchComponent implements OnInit {
             );
     }
 
+    onSearchLocation(cityName: string) {
+        this.searchStream
+            .next(cityName);
+    }
 }
