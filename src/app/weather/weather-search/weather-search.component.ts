@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import '@angular/forms';
 import {WeatherService} from '../weather.service';
 import {WeatherItem} from '../weather-item/weather-item';
-import {FormControl} from '@angular/forms';
 import {Subject} from 'rxjs';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
@@ -41,5 +40,9 @@ export class WeatherSearchComponent implements OnInit {
     onSearchLocation(cityName: string) {
         this.searchStream
             .next(cityName);
+    }
+
+    onClear() {
+        this._weatherService.clearWeatherItems();
     }
 }

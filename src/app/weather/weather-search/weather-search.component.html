@@ -5,6 +5,7 @@
                (input)="onSearchLocation(input.value)" #input/>
         <button type="submit">Add City</button>
     </form>
+        <button class="clear" type="submit" (click)="onClear()">Clear List</button>
     <div>
         <span class="info">City found:</span>{{data.name}}
     </div>

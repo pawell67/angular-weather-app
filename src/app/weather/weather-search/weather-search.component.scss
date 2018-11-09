@@ -32,8 +32,19 @@
   button:hover {
     background-color: #27ae60;
   }
+
   .info {
     color: rgba(95, 95, 95, 0.51);
     font-weight: bold;
+  }
+
+  .clear {
+    margin: 5px;
+    background-color: red;
+    display: inline-block;
+
+    &:hover {
+      background-color: darken(red, 10%);
+    }
   }
 }

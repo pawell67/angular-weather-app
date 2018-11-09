@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {WEATHER_ITEMS} from './weather.mock';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
@@ -8,21 +7,23 @@ import {WeatherItem} from './weather-item/weather-item';
 
 @Injectable()
 export class WeatherService {
+    WEATHER_ITEMS: WeatherItem[] = [];
+
     constructor(private _http: HttpClient) {
 
     }
 
     getWeatherItems() {
-        return WEATHER_ITEMS;
+        return this.WEATHER_ITEMS;
     }
 
     addWeatherItem(weatherItem: WeatherItem) {
-        WEATHER_ITEMS.push(weatherItem);
+        this.WEATHER_ITEMS.push(weatherItem);
     }
 
 
     clearWeatherItems() {
-        WEATHER_ITEMS.splice(0);
+        this.WEATHER_ITEMS.splice(0);
     }
 
     searchWeatherData(cityName: string): Observable<any> {

@@ -6,14 +6,8 @@ import {WeatherItem} from './weather-item';
     templateUrl: './weather-item.component.html',
     styleUrls: ['./weather-item.component.scss']
 })
-export class WeatherItemComponent implements OnInit {
+export class WeatherItemComponent {
     @Input('weatherItem')
     weatherItem: WeatherItem;
-
-    constructor() {
-    }
-
-    ngOnInit(): any {
-    }
-
 }
+

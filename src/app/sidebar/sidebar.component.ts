@@ -12,7 +12,7 @@ import 'rxjs/add/operator/retry';
     providers: [ProfileService]
 })
 export class SidebarComponent implements OnInit {
-    profiles: Profile[];
+    public profiles: Profile[];
 
 
     constructor(private _profileService: ProfileService, private _weatherService: WeatherService) {
