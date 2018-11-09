@@ -33,14 +33,9 @@ export class WeatherSearchComponent implements OnInit {
             );
     }
 
-    onSubmit(form: FormControl) {
-        this._weatherService.searchWeatherData(form.value.location)
-            .subscribe(
-                data => {
-                    const weatherItem = new WeatherItem(data.name, data.weather[0].description, data.main.temp);
-                    this._weatherService.addWeatherItem(weatherItem);
-                }
-            );
+    onSubmit() {
+        const weatherItem = new WeatherItem(this.data.name, this.data.weather[0].description, this.data.main.temp);
+        this._weatherService.addWeatherItem(weatherItem);
     }
 
     onSearchLocation(cityName: string) {

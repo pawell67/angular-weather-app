@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {WEATHER_ITEMS} from './weather.mock';
-import {Observable, throwError} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -20,12 +20,17 @@ export class WeatherService {
         WEATHER_ITEMS.push(weatherItem);
     }
 
+
+    clearWeatherItems() {
+        WEATHER_ITEMS.splice(0);
+    }
+
     searchWeatherData(cityName: string): Observable<any> {
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&type=like&units=metric&APPID=d5bf238cd2565d4d7ea1e1483be99b68`;
         return this._http
-            .get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=d5bf238cd2565d4d7ea1e1483be99b68&type=like&units=metric`)
+            .get(url)
             .catch(error => {
-                console.log(error);
-                return error;
+                return error.message;
             });
     }
 }

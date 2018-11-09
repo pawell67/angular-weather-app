@@ -8,13 +8,16 @@ import {WeatherService} from './weather/weather.service';
 import {WeatherSearchComponent} from './weather/weather-search/weather-search.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {SidebarComponent} from './sidebar/sidebar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         WeatherItemComponent,
         WeatherListComponent,
-        WeatherSearchComponent
+        WeatherSearchComponent,
+
+        SidebarComponent
     ],
     imports: [
         BrowserModule,
